@@ -9,7 +9,7 @@ public class NotaFiscal {
     private String nomeProduto;
     private int totalQuantity;
 
-    public NotaFiscal(int chaveAcesso, String nomeCliente, String nomeProduto, int totalQuantity){
+    public NotaFiscal(String nomeCliente, String nomeProduto, int totalQuantity){
         this.chaveAcesso = UUID.randomUUID();
         this.dataEmissao = LocalDate.now();
         this.nomeCliente = nomeCliente;

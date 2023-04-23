@@ -1,13 +1,13 @@
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Tratamento{
     private Medicacao medicacao;
-    private LocalDateTime inicioTratamento;
-    private LocalDateTime fimTratamento;
+    private LocalDate inicioTratamento;
+    private LocalDate fimTratamento;
     private String justificativa;
     private String dosagem;
 
-    public Tratamento(Medicacao medicacao, LocalDateTime inicioTratamento, LocalDateTime fimTratamento, String justificativa, String dosagem) {
+    public Tratamento(Medicacao medicacao, LocalDate inicioTratamento, LocalDate fimTratamento, String justificativa, String dosagem) {
         this.medicacao = medicacao;
         this.inicioTratamento = inicioTratamento;
         this.fimTratamento = fimTratamento;
@@ -23,19 +23,19 @@ public class Tratamento{
         this.medicacao = medicacao;
     }
 
-    public LocalDateTime getInicioTratamento() {
+    public LocalDate getInicioTratamento() {
         return this.inicioTratamento;
     }
 
-    public void setInicioTratamento(LocalDateTime inicioTratamento) {
+    public void setInicioTratamento(LocalDate inicioTratamento) {
         this.inicioTratamento = inicioTratamento;
     }
 
-    public LocalDateTime getFimTratamento() {
+    public LocalDate getFimTratamento() {
         return this.fimTratamento;
     }
 
-    public void setFimTratamento(LocalDateTime fimTratamento) {
+    public void setFimTratamento(LocalDate fimTratamento) {
         this.fimTratamento = fimTratamento;
     }
 

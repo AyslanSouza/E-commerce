@@ -1,37 +1,49 @@
 import java.time.LocalDate;
+import java.util.Scanner;
+import java.util.UUID;
+
 //Registra a venda do animal com o comprador 
 public class Venda{
     private boolean retirada;
     private FormaPagamento pagamento;
     private LocalDate dataVenda;
-    private Usuario usuario;
+    private UUID idCliente;
+    private String nomeCliente;
     private Cachorro cachorro;
+    private int totalQuantity;
     private NotaFiscal nfe;
     //o que foi comprado
 
-    public Venda(FormaPagamento pagamento, int digito, LocalDate dataVenda, Usuario usuario, Cachorro cachorro, NotaFiscal nfe) {
-        //Define a forma de entrega da compra
-        switch(digito){
-            case 1:
-                retirada = true;
-                System.out.print("Você escolheu retirar no local");
-                break;
-            case 2:
-                retirada = false;
-                System.out.print("Você escolheu entregar na sua residencia");
-                break;
-            default:
-                retirada = false;
-                System.out.print("Você escolheu entregar na sua residencia");
-        }
+    
+
+    public Venda(FormaPagamento pagamento, LocalDate dataVenda, UUID idCliente, String nomeCliente, Cachorro cachorro, int totalQuantity) {
         //Cadastro o cartão utilizado na compra
         this.pagamento = pagamento;
         this.dataVenda = dataVenda;
-        this.usuario = usuario;
+        this.idCliente = idCliente;
         this.cachorro = cachorro;
-        this.nfe = nfe;
+        this.escolherFormaRecebimento();
+        this.nfe = new NotaFiscal(this.nomeCliente, this.cachorro.getRaca(), this.totalQuantity);
     }
 
+    public void escolherFormaRecebimento(){
+        //Define a forma de entrega da compra
+        System.out.println("Escolha uma das opções de entrega: \n 1 -> Retirar no local\n 2 -> Entrega na residência\n 3 -> ");
+        Scanner scanner = new Scanner(System.in);
+        int formaEntrega = scanner.nextInt();
+        scanner.close();
+
+        switch(formaEntrega){
+            case 1:
+                System.out.print("Você escolheu retirar no local");
+                break;
+            case 2:
+                System.out.print("Você escolheu entregar na sua residencia");
+                break;
+            default:
+                System.out.print("Você escolheu entregar na sua residencia");
+        }
+    }
 
     public FormaPagamento getPagamento() {
         return this.pagamento;
@@ -46,8 +58,8 @@ public class Venda{
         this.dataVenda = dataVenda;
     }
 
-    public Usuario getUsuario() {
-        return this.usuario;
+    public String getUsuario() {
+        return this.nomeCliente;
     }
 
     public Cachorro getCachorro() {

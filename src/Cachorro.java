@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.UUID;
 
 public class Cachorro {
@@ -11,7 +11,7 @@ public class Cachorro {
     private String idPai;
     private String idMae;
     private String dono;
-    private LocalDateTime dataNascimento;
+    private LocalDate dataNascimento;
     private String raca;
     private int peso;
     private Boolean esterilizado;
@@ -19,8 +19,11 @@ public class Cachorro {
     private ArrayList<Tratamento> tratamento;
     private ArrayList<Veterinario> veterinarios;
     private PrescricaoAlimentacao alimentacao;
+    private Boolean isReserved;
 
-    public Cachorro(String idCachorro, String nChip, Boolean pedigree, String nome, String idPai, String idMae, LocalDateTime dataNascimento, String raca, Boolean esterilizado, ArrayList<String> medicacao, CarteiraVacinacao carteiraVacinacao, int peso) {
+    public Cachorro(String nChip, Boolean pedigree, String nome, String idPai, String idMae, LocalDate dataNascimento, String raca, 
+                    Boolean esterilizado, CarteiraVacinacao carteiraVacinacao, int peso) {
+                        
         this.idCachorro = UUID.randomUUID();
         this.nChip = nChip;
         this.pedigree = pedigree;
@@ -33,6 +36,51 @@ public class Cachorro {
         this.carteiraVacinacao = carteiraVacinacao;
         this.tratamento = new ArrayList<Tratamento>();
         this.peso = peso;
+        this.isReserved = false;
+        this.dono = null;
+    }
+
+    public Boolean isPedigree() {
+        return this.pedigree;
+    }
+
+    public String getDono() {
+        return this.dono;
+    }
+
+    public void setDono(String dono) {
+        this.dono = dono;
+    }
+    public void setTratamento(ArrayList<Tratamento> tratamento) {
+        this.tratamento = tratamento;
+    }
+
+    public ArrayList<Veterinario> getVeterinarios() {
+        return this.veterinarios;
+    }
+
+    public void setVeterinarios(ArrayList<Veterinario> veterinarios) {
+        this.veterinarios = veterinarios;
+    }
+
+    public PrescricaoAlimentacao getAlimentacao() {
+        return this.alimentacao;
+    }
+
+    public void setAlimentacao(PrescricaoAlimentacao alimentacao) {
+        this.alimentacao = alimentacao;
+    }
+
+    public Boolean isReservado() {
+        return this.isReserved;
+    }
+
+    public Boolean getIsReserved() {
+        return this.isReserved;
+    }
+
+    public void setIsReserved(Boolean isReserved) {
+        this.isReserved = isReserved;
     }
 
     public UUID getIdCachorro() {
@@ -51,11 +99,11 @@ public class Cachorro {
         this.nChip = nChip;
     }
 
-    public String getPedigree() {
+    public Boolean getPedigree() {
         return this.pedigree;
     }
 
-    public void setPedigree(String pedigree) {
+    public void setPedigree(Boolean pedigree) {
         this.pedigree = pedigree;
     }
 
@@ -83,11 +131,11 @@ public class Cachorro {
         this.idMae = idMae;
     }
 
-    public LocalDateTime getDataNascimento() {
+    public LocalDate getDataNascimento() {
         return this.dataNascimento;
     }
 
-    public void setDataNascimento(LocalDateTime dataNascimento) {
+    public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
 
@@ -123,8 +171,8 @@ public class Cachorro {
         return this.tratamento;
     }
 
-    public void setTratamento(ArrayList<Tratamento> tratamentos) {
-        this.tratamento = tratamentos;
+    public void addTratamento(Tratamento tratamento) {
+        this.tratamento.add(tratamento);
     }
 
     public CarteiraVacinacao getCarteiraVacinacao() {

@@ -1,49 +1,73 @@
 import java.util.ArrayList;
 import java.util.UUID;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Estoque {
-    //Lista de cachorros cadastrados no sistema
-    private ArrayList<Cachorro> cachorrosCadastrados;
+
+    private Map<String, ArrayList<Cachorro>> cachorros;
 
     public Estoque(){
-        cachorrosCadastrados = new ArrayList<Cachorro>();
+        cachorros = new HashMap<>();
     }
 
-    public ArrayList<Cachorro> getCachorrosCadastrados() {
-        return this.cachorrosCadastrados;
+    public void adicionarCachorro(Cachorro cachorro) {
+        String raca = cachorro.getRaca();
+        cachorros.putIfAbsent(raca, new ArrayList<>());
+        cachorros.get(raca).add(cachorro);
     }
 
-    public void setCachorrosCadastrados(ArrayList<Cachorro> cachorrosCadastrados) {
-        this.cachorrosCadastrados = cachorrosCadastrados;
+    public Cachorro removerCachorro(String raca) {
+        ArrayList<Cachorro> listaCachorros = cachorros.get(raca);
+        if (listaCachorros != null && !listaCachorros.isEmpty()) {
+            Cachorro cachorro = listaCachorros.get(0);
+            listaCachorros.remove(0);
+            return cachorro;
+        }
+        return null;
     }
 
-    public void addCachorro(Cachorro cachorro) {
-        this.cachorrosCadastrados.add(cachorro);
+    public Cachorro removerCachorroByUUID(UUID cachorroUUID) {
+        for (ArrayList<Cachorro> listaCachorros : cachorros.values()) {
+            for (int i = 0; i < listaCachorros.size(); i++) {
+                Cachorro cachorro = listaCachorros.get(i);
+                if (cachorro.getIdCachorro().equals(cachorroUUID)) {
+                    listaCachorros.remove(i);
+                    return cachorro;
+                }
+            }
+        }
+        return null;
     }
-    
-    public void removeCachorro(UUID cachorroUUID) {
-        for (Cachorro cachorro : this.cachorrosCadastrados){
-            if (cachorro.getIdCachorro() == cachorroUUID){
-                this.cachorrosCadastrados.remove(cachorro);
+
+    public Cachorro getCachorroByUUID(UUID cachorroUUID) {
+        for (ArrayList<Cachorro> listaCachorros : cachorros.values()) {
+            for (int i = 0; i < listaCachorros.size(); i++) {
+                Cachorro cachorro = listaCachorros.get(i);
+                if (cachorro.getIdCachorro().equals(cachorroUUID)) {
+                    return cachorro;
+                }
+            }
+        }
+        return null;
+    }
+
+    public int getQuantidade(String raca) {
+        ArrayList<Cachorro> listaCachorros = this.cachorros.get(raca);
+        return listaCachorros != null ? listaCachorros.size() : 0;
+    }
+
+    public ArrayList<Cachorro> getCachorrosPorRaca(String raca) {
+        return this.cachorros.getOrDefault(raca, new ArrayList<>());
+    }
+
+    public void mostrarCachorrosDisponiveis() {
+        for (ArrayList<Cachorro> listaCachorros : this.cachorros.values()) {
+            for (Cachorro cachorro : listaCachorros) {
+                System.out.println("Raça: " + cachorro.getRaca());
             }
         }
     }
-
-    public void showCachorros(){
-        for (Cachorro cachorro : this.cachorrosCadastrados){
-            String registroCachorro = String.format("Nome: %s ID: %s", cachorro.getNome(), cachorro.getIdCachorro());
-            System.out.println(registroCachorro);
-        }
-    }
-
-    public String getCachorroByUUID(UUID cachorroUUID){
-        for (Cachorro cachorro : this.cachorrosCadastrados){
-            if (cachorro.getIdCachorro() == cachorroUUID) {
-                return cachorro.getNome();
-            }
-        }
-        return null; 
-    }
-
     
 }

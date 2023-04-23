@@ -5,7 +5,7 @@ public class CarteiraVacinacao{
 
     private ArrayList<Vacina> vacinas;
 
-    public CarteiraVacinacao(String nomePessoa) {
+    public CarteiraVacinacao() {
         this.vacinas = new ArrayList<>();
     }
 
