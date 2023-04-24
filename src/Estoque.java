@@ -59,7 +59,7 @@ public class Estoque {
         for (UUID id : listaCachorros) {
             for (ArrayList<Cachorro> cachorros : this.cachorros.values()) {
                 for (Cachorro cachorro : cachorros) {
-                    if (cachorro.getIdCachorro().equals(id)) {
+                    if (cachorro.getIdCachorro() == id) {
                         selectedCachorros.add(cachorro);
                     }
                 }

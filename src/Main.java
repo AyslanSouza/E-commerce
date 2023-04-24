@@ -12,7 +12,7 @@ public class Main {
         Tratamento tratamento1 = new Tratamento(dorFlex, LocalDate.of(2017, 05, 14), LocalDate.of(2023, 06, 19), "Problemas nos ossos", "10 miligramas");
         Cachorro cachorro1 = new Cachorro("2556418", true, "jorge", "1553", "5674", LocalDate.of(2022, 06 , 19), "Poodle", true, vacinaRaiva, 1500);
         cachorro1.addTratamento(tratamento1);
-        
+
         Cachorro cachorro2 = new Cachorro("2565864", false, "Tobias", "1564", "5674", LocalDate.of(2023, 06 , 19), "Vira-lata", false, vacinaRaiva, 2000);
 
         ArrayList<UUID> produtos = new ArrayList<UUID>();

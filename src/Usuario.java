@@ -101,6 +101,7 @@ public class Usuario {
 
     public void comprarCachorro(ArrayList<UUID> listaUUID, EstoqueController estoqueController, FormaPagamento formaPagamento){
         ArrayList<Cachorro> cachorrosComprar = estoqueController.getCachorrosByUUIDs(listaUUID);
+
         Venda venda = new Venda(formaPagamento, LocalDate.of(2017, 05, 14), this.getIdUsuario(), this.getNome());
 
         for (Cachorro cachorro : cachorrosComprar){
@@ -116,6 +117,8 @@ public class Usuario {
                 }
             }
         }
+        venda.gerarNFE();
+        venda.getNfe().consultaItens();
     }
 
     public void reservarCachorro(ArrayList<UUID> listaUUID, EstoqueController estoqueController, FormaPagamento formaPagamento){
