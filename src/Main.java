@@ -25,7 +25,7 @@ public class Main {
         
         // ===============Criando os exames para os cachorros===============
         Date dataExameCoco = new Date();
-        Examecoco exameCoco = new Examecoco(dataExameCoco, "Pastoso", "Marrom", false, true);
+        ExameFezes exameCoco = new ExameFezes(dataExameCoco, "Pastoso", "Marrom", false, true);
 
         Date dataExameLaudosDisplasias = new Date();
         ExameLaudosDisplasias exameLaudosDisplasias = new ExameLaudosDisplasias(dataExameLaudosDisplasias, "Coxofemoral", "Grau 1", "Nenhuma observação adicional.");
@@ -81,6 +81,10 @@ public class Main {
         
         ArrayList<UUID> produtosCliente2 = new ArrayList<UUID>();
         produtosCliente2.add(cachorro3.getIdCachorro());
+
+        cliente2.reservarCachorro(produtosCliente2, estoque, cartaoCliente2);
+        cliente1.comprarCachorro(produtosCliente2, estoque, cartaoCliente1);
+
         cliente2.comprarCachorro(produtosCliente2, estoque, cartaoCliente2);
 
         scanner.close();

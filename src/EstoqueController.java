@@ -29,18 +29,19 @@ public class EstoqueController {
         }
         else{
             if (cachorro.getReservedBy() != null){
-                if (!cachorro.getReservedBy().reservaExpirou(cachorro)){
+                if (cachorro.getReservedBy().reservaExpirou(cachorro)){
                     cachorro.getReservedBy().getReservas().remove(cachorro);
                     cachorro.setIsReserved(false);
                     return true;
-                }else return false;
+                } else return false;
             }else return true;
         }
     }
 
     public void mostrarCachorrosDisponiveis(){
-        System.out.println("Exibindo cachorros disponíveis atualmente: ");
+        System.out.println("***************EXIBINDO CACHORROS DISPONÍVEIS*****************");
         this.estoque.mostrarCachorrosDisponiveis();
+        System.out.println("***************************************************************\n");
     }
 
     public Estoque getEstoque() {

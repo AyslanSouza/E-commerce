@@ -92,22 +92,25 @@ public class Usuario {
     }
 
     public void comprarCachorro(ArrayList<UUID> listaUUID, EstoqueController estoqueController, FormaPagamento formaPagamento){
+        System.out.println("Executando compra para o Usuário: " + this.getNome() + "\n");
         ArrayList<Cachorro> cachorrosComprar = estoqueController.getCachorrosByUUIDs(listaUUID);
 
         Venda venda = new Venda(formaPagamento, LocalDate.now(), this.getIdUsuario(), this.getNome(), this.getScanner());
 
         Boolean vendaValida = true;
         for (Cachorro cachorro : cachorrosComprar){
-            if (estoqueController.isAvailablePurchase(cachorro)){
-                //tratamento de exceção
-                try{
+            try{
+                if(!estoqueController.isAvailablePurchase(cachorro) && cachorro.getReservedBy() != this){
+                    throw new ReservedException("Cachorro " + cachorro.getNome() + " já esta reservado pelo usuário "+ cachorro.getReservedBy().getNome());
+                }else{
                     venda.addCachorro(cachorro);
                     estoqueController.removeCachorroByUUID(cachorro.getIdCachorro());
                 }
-                catch (Exception e){
-                    System.out.println("Não foi possível realizar a venda");
-                    vendaValida = false;
-                }
+            }
+            catch (ReservedException e){
+                System.out.println(e.getMessage());
+                System.out.println("Não foi possível realizar a venda");
+                vendaValida = false;
             }
         }
         if (vendaValida){
@@ -122,40 +125,32 @@ public class Usuario {
         ArrayList<Cachorro> cachorrosReservar = estoqueController.getCachorrosByUUIDs(listaUUID);
         Boolean reservaValida = true;
         for (Cachorro cachorro : cachorrosReservar){
-            if (estoqueController.isAvailablePurchase(cachorro)){
-                //tratamento de exceção
-                try{
+            try{
+                if (!estoqueController.isAvailablePurchase(cachorro)){
+                    throw new ReservedException("Cachorro " + cachorro.getNome() + " já esta reservado pelo usuário "+ cachorro.getReservedBy().getNome());
+                }else{
                     cachorro.setIsReserved(true);
                     cachorro.setReservedBy(this);
                 }
-                catch (Exception e){
-                    reservaValida = false;
-                    System.out.println("Não foi possível realizar a venda");
-                }
+            }catch (ReservedException e){
+                System.out.println(e.getMessage());
+                reservaValida = false;
+                System.out.println("Não foi possível realizar a venda");
             }
         }
         if (reservaValida){
             System.out.println("Reserva realizada com sucesso.");
         }
     }
-
     
-    public boolean reservarCachorro(Cachorro cachorro) {
-        if (reservas.size() < this.reservaLimite) {
-            cachorro.setIsReserved(true);
-            cachorro.setReservedBy(this);
-            reservas.put(cachorro, System.currentTimeMillis());
-            return true;
-        }
-        return false;
-    }
-
     public boolean reservaExpirou(Cachorro cachorro) {
-        Long reservationTime = reservas.get(cachorro);
-        if (reservationTime != null) {
+        
+        if (this.reservas != null){
+            Long reservationTime = this.reservas.get(cachorro);            
             long currentTime = System.currentTimeMillis();
             return (currentTime - reservationTime) > this.reservaDuracao;
         }
+
         return false;
     }
 

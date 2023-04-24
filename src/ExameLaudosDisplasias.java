@@ -16,11 +16,13 @@ public class ExameLaudosDisplasias {
     }
 
     public void exibirFichaExame() {
-        System.out.println("Ficha de Exame de Laudos de Displasias:");
+        System.out.println("=================FICHA DE EXAME DISPLASIA=================");
+        System.out.println("");
         System.out.println("Data do exame: " + dataExame);
         System.out.println("Tipo de displasia: " + tipoDisplasia);
         System.out.println("Grau de displasia: " + grauDisplasia);
         System.out.println("Observações: " + observacoes);
+        System.out.println("=======================================================\n");
     }
 
     public Date getDataExame() {

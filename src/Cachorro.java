@@ -49,7 +49,7 @@ public class Cachorro {
     }
 
     public void mostarExames(){
-        System.out.println("Exibindo exames para o cachorro: " + this.getRaca() + " --> " + this.getNome());
+        System.out.println("\nExibindo exames para o cachorro: " + this.getRaca() + " --> " + this.getNome() + "\n");
         this.exames.exibirExames();
     }
 

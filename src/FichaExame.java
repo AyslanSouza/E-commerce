@@ -4,10 +4,10 @@ import java.util.Map;
 
 public class FichaExame {
     private ExameSangue exameSangue; //Ficha de exame de Sangue
-    private Examecoco exameCoco; //Ficha de exame de coco
+    private ExameFezes exameCoco; //Ficha de exame de coco
     private ExameLaudosDisplasias exameLaudosDisplasias; //ficha de exame de laudos Displasias
 
-    public FichaExame(ExameSangue exameSangue, Examecoco exameCoco, ExameLaudosDisplasias exameLaudosDisplasias) {
+    public FichaExame(ExameSangue exameSangue, ExameFezes exameCoco, ExameLaudosDisplasias exameLaudosDisplasias) {
         this.exameSangue = exameSangue;
         this.exameCoco = exameCoco;
         this.exameLaudosDisplasias = exameLaudosDisplasias;
@@ -24,8 +24,8 @@ public class FichaExame {
             if (exame.getValue() == null) {
                 System.out.println("Este cão não possui " + exame.getKey().toLowerCase());
             } else {
-                if (exame.getValue() instanceof Examecoco) {
-                    ((Examecoco) exame.getValue()).exibirFichaExame();
+                if (exame.getValue() instanceof ExameFezes) {
+                    ((ExameFezes) exame.getValue()).exibirFichaExame();
                 } else if (exame.getValue() instanceof ExameSangue) {
                     ((ExameSangue) exame.getValue()).exibirFichaExame();
                 } else if (exame.getValue() instanceof ExameLaudosDisplasias) {
@@ -43,11 +43,11 @@ public class FichaExame {
         this.exameSangue = exameSangue;
     }
 
-    public Examecoco getExameCoco() {
+    public ExameFezes getExameCoco() {
         return this.exameCoco;
     }
 
-    public void setExameCoco(Examecoco exameCoco) {
+    public void setExameCoco(ExameFezes exameCoco) {
         this.exameCoco = exameCoco;
     }
 

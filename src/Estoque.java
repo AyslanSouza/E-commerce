@@ -80,7 +80,7 @@ public class Estoque {
         for (ArrayList<Cachorro> listaCachorros : this.cachorros.values()) {
             for (Cachorro cachorro : listaCachorros) {
                 if (!cachorro.isIsReserved()){
-                    System.out.println("Raça: " + cachorro.getRaca() + "Nome: " + cachorro.getNome());
+                    System.out.println("Raça: " + cachorro.getRaca() + " Nome: " + cachorro.getNome());
                 }
             }
         }

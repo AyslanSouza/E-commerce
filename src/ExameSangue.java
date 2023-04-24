@@ -19,13 +19,14 @@ public class ExameSangue {
     }
 
     public void exibirFichaExame() {
-        System.out.println("Ficha de Exame de Sangue:");
+        System.out.println("=================FICHA EXAME DE SANGUE=================");
         System.out.println("Data do exame: " + dataExame);
         System.out.println("Tipo de sangue: " + tipoSangue);
         System.out.printf("Hemoglobina: %.2f g/dL%n", hemoglobina);
         System.out.printf("Hemácias: %.2f milhões/mcL%n", hemacias);
         System.out.printf("Leucócitos: %.2f mil/mcL%n", leucocitos);
         System.out.printf("Plaquetas: %.2f mil/mcL%n", plaquetas);
+        System.out.println("=======================================================\n");
     }
 
     public Date getDataExame() {
