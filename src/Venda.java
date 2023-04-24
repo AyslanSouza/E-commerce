@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.util.Scanner;
 import java.util.UUID;
+import java.util.ArrayList;
 
 //Registra a venda do animal com o comprador 
 public class Venda{
@@ -9,21 +10,32 @@ public class Venda{
     private LocalDate dataVenda;
     private UUID idCliente;
     private String nomeCliente;
-    private Cachorro cachorro;
-    private int totalQuantity;
+    private ArrayList<Cachorro> cachorrosComprados;
     private NotaFiscal nfe;
     //o que foi comprado
 
-    
-
-    public Venda(FormaPagamento pagamento, LocalDate dataVenda, UUID idCliente, String nomeCliente, Cachorro cachorro, int totalQuantity) {
+    public Venda(FormaPagamento pagamento, LocalDate dataVenda, UUID idCliente, String nomeCliente) {
         //Cadastro o cartão utilizado na compra
         this.pagamento = pagamento;
         this.dataVenda = dataVenda;
         this.idCliente = idCliente;
-        this.cachorro = cachorro;
+        this.cachorrosComprados = new ArrayList<Cachorro>();
         this.escolherFormaRecebimento();
-        this.nfe = new NotaFiscal(this.nomeCliente, this.cachorro.getRaca(), this.totalQuantity);
+        this.nfe = new NotaFiscal(this.nomeCliente, cachorrosComprados);
+
+    }
+
+    public void addCachorro(Cachorro cachorro){
+        this.cachorrosComprados.add(cachorro);
+    }
+
+    public void removeCachorro(UUID cachorroID){
+        for (Cachorro cachorro : this.cachorrosComprados){
+            if (cachorro.getIdCachorro() == cachorroID){
+                this.cachorrosComprados.remove(cachorro);
+                break;
+            }
+        }
     }
 
     public void escolherFormaRecebimento(){
@@ -61,14 +73,5 @@ public class Venda{
     public String getUsuario() {
         return this.nomeCliente;
     }
-
-    public Cachorro getCachorro() {
-        return this.cachorro;
-    }
-
-    public void setCachorro(Cachorro cachorro) {
-        this.cachorro = cachorro;
-    }
-    
     
 }

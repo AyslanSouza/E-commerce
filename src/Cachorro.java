@@ -20,6 +20,19 @@ public class Cachorro {
     private ArrayList<Veterinario> veterinarios;
     private PrescricaoAlimentacao alimentacao;
     private Boolean isReserved;
+    private Usuario reservedBy;
+
+    public Boolean isIsReserved() {
+        return this.isReserved;
+    }
+
+    public Usuario getReservedBy() {
+        return this.reservedBy;
+    }
+
+    public void setReservedBy(Usuario reservedBy) {
+        this.reservedBy = reservedBy;
+    }
 
     public Cachorro(String nChip, Boolean pedigree, String nome, String idPai, String idMae, LocalDate dataNascimento, String raca, 
                     Boolean esterilizado, CarteiraVacinacao carteiraVacinacao, int peso) {

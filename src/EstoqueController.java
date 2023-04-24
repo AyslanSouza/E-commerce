@@ -1,4 +1,5 @@
 import java.util.UUID;
+import java.util.ArrayList;
 
 public class EstoqueController {
 
@@ -12,14 +13,21 @@ public class EstoqueController {
         this.estoque.removerCachorroByUUID(cachorroID);
     }
 
-    public Boolean isAvailablePurchase(Cachorro cachorro, int quantity){
-        if ((this.estoque.getCachorroByUUID(cachorro.getIdCachorro()) == null) || 
-            (this.estoque.getQuantidade(cachorro.getRaca()) >= quantity) || 
-            (cachorro.isReservado())){
+    public ArrayList<Cachorro> getCachorrosByUUIDs(ArrayList<UUID> listaUUID){
+        return this.estoque.getCachorrosByUUIDs(listaUUID);
+    }
+
+    public Boolean isAvailablePurchase(Cachorro cachorro){
+        if (this.estoque.getCachorroByUUID(cachorro.getIdCachorro()) == null){
             return false;
         }
         else{
-            return true;
+
+            if (!cachorro.getReservedBy().reservaExpirou(cachorro)){
+                cachorro.getReservedBy().getReservations().remove(cachorro);
+                cachorro.setIsReserved(false);
+                return true;
+            }else return false;
         }
     }
 }

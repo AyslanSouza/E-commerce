@@ -53,6 +53,21 @@ public class Estoque {
         return null;
     }
 
+    public ArrayList<Cachorro> getCachorrosByUUIDs(ArrayList<UUID> listaCachorros) {
+        ArrayList<Cachorro> selectedCachorros = new ArrayList<>();
+
+        for (UUID id : listaCachorros) {
+            for (ArrayList<Cachorro> cachorros : this.cachorros.values()) {
+                for (Cachorro cachorro : cachorros) {
+                    if (cachorro.getIdCachorro().equals(id)) {
+                        selectedCachorros.add(cachorro);
+                    }
+                }
+            }
+        }
+        return selectedCachorros;
+    }
+
     public int getQuantidade(String raca) {
         ArrayList<Cachorro> listaCachorros = this.cachorros.get(raca);
         return listaCachorros != null ? listaCachorros.size() : 0;
