@@ -18,39 +18,47 @@ public class Cachorro {
     private CarteiraVacinacao carteiraVacinacao;
     private ArrayList<Tratamento> tratamento;
     private ArrayList<Veterinario> veterinarios;
+    private FichaExame exames;
     private PrescricaoAlimentacao alimentacao;
     private Boolean isReserved;
     private Usuario reservedBy;
+    private float preco;
 
-    public Boolean isIsReserved() {
-        return this.isReserved;
-    }
-
-    public Usuario getReservedBy() {
-        return this.reservedBy;
-    }
-
-    public void setReservedBy(Usuario reservedBy) {
-        this.reservedBy = reservedBy;
-    }
-
-    public Cachorro(String nChip, Boolean pedigree, String nome, String idPai, String idMae, LocalDate dataNascimento, String raca, 
-                    Boolean esterilizado, CarteiraVacinacao carteiraVacinacao, int peso) {
-                        
+    public Cachorro(String nChip, Boolean pedigree, String nome, String idPai, String idMae, LocalDate dataNascimento, 
+                    String raca, int peso, Boolean esterilizado, CarteiraVacinacao carteiraVacinacao, 
+                    ArrayList<Veterinario> veterinarios, FichaExame exames, PrescricaoAlimentacao alimentacao, float preco){
         this.idCachorro = UUID.randomUUID();
         this.nChip = nChip;
         this.pedigree = pedigree;
         this.nome = nome;
         this.idPai = idPai;
         this.idMae = idMae;
+        this.dono = null;
         this.dataNascimento = dataNascimento;
         this.raca = raca;
+        this.peso = peso;
         this.esterilizado = esterilizado;
         this.carteiraVacinacao = carteiraVacinacao;
         this.tratamento = new ArrayList<Tratamento>();
-        this.peso = peso;
+        this.veterinarios = veterinarios;
+        this.exames = exames;
+        this.alimentacao = alimentacao;
         this.isReserved = false;
-        this.dono = null;
+        this.reservedBy = null;
+        this.preco = preco;
+    }
+
+    public void mostarExames(){
+        System.out.println("Exibindo exames para o cachorro: " + this.getRaca() + " --> " + this.getNome());
+        this.exames.exibirExames();
+    }
+
+    public FichaExame getExames() {
+        return this.exames;
+    }
+
+    public void setExames(FichaExame exames) {
+        this.exames = exames;
     }
 
     public Boolean isPedigree() {
@@ -74,6 +82,20 @@ public class Cachorro {
 
     public void setVeterinarios(ArrayList<Veterinario> veterinarios) {
         this.veterinarios = veterinarios;
+    }
+
+    public void addVeterinario(Veterinario veterinario){
+        this.veterinarios.add(veterinario);
+    }
+
+    public Veterinario removeVeterinario(UUID idVeterinario){
+        for (Veterinario veterinario : this.veterinarios){
+            if (veterinario.getIdVeterinario() == idVeterinario){
+                this.veterinarios.remove(veterinario);
+                return veterinario;
+            }
+        }
+        return null;
     }
 
     public PrescricaoAlimentacao getAlimentacao() {
@@ -194,6 +216,26 @@ public class Cachorro {
 
     public void setCarteiraVacinacao(CarteiraVacinacao carteiraVacinacao) {
         this.carteiraVacinacao = carteiraVacinacao;
+    }
+
+    public float getPreco() {
+        return this.preco;
+    }
+
+    public void setPreco(float preco) {
+        this.preco = preco;
+    }
+
+    public Boolean isIsReserved() {
+        return this.isReserved;
+    }
+
+    public Usuario getReservedBy() {
+        return this.reservedBy;
+    }
+
+    public void setReservedBy(Usuario reservedBy) {
+        this.reservedBy = reservedBy;
     }
     
 }

@@ -1,4 +1,5 @@
 public class Medicacao{
+    
     private String nome;
     private String tipo;
     private String posologia;

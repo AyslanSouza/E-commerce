@@ -14,6 +14,15 @@ public class Examecoco {
         this.presencaSangue = presencaSangue;
         this.presencaMuco = presencaMuco;
     }
+
+    public void exibirFichaExame() {
+        System.out.println("Ficha de Exame de Coco:");
+        System.out.println("Data do exame: " + dataExame);
+        System.out.println("Aspecto: " + aspecto);
+        System.out.println("Cor: " + cor);
+        System.out.println("Presença de sangue: " + (presencaSangue ? "Sim" : "Não"));
+        System.out.println("Presença de muco: " + (presencaMuco ? "Sim" : "Não"));
+    }
     
     public Date getDataExame() {
         return dataExame;
@@ -53,6 +62,14 @@ public class Examecoco {
     
     public void setPresencaMuco(boolean presencaMuco) {
         this.presencaMuco = presencaMuco;
+    }
+
+    public boolean getPresencaSangue() {
+        return this.presencaSangue;
+    }
+
+    public boolean getPresencaMuco() {
+        return this.presencaMuco;
     }
 }
 

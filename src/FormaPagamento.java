@@ -7,7 +7,6 @@ public class FormaPagamento {
     private LocalDate dataVencimento;
     private double CVV;
 
-
     public FormaPagamento(String nomeTitular, double NSU, LocalDate dataVencimento, double CVV) {
         this.nomeTitular = nomeTitular;
         this.NSU = NSU;

@@ -10,11 +10,13 @@ public class EstoqueController {
     }
 
     public void addCachorro(Cachorro cachorro){
+        System.out.println("Adicionando cachorro ao sistema: " + cachorro.getRaca() + " --> " + cachorro.getNome());
         this.estoque.adicionarCachorro(cachorro);
     }
 
-    public void removeCachorroByUUID(UUID cachorroID){
-        this.estoque.removerCachorroByUUID(cachorroID);
+    public Cachorro removeCachorroByUUID(UUID cachorroID){
+        Cachorro cachorroRemovido = this.estoque.removerCachorroByUUID(cachorroID);
+        return cachorroRemovido;
     }
 
     public ArrayList<Cachorro> getCachorrosByUUIDs(ArrayList<UUID> listaUUID){
@@ -28,11 +30,25 @@ public class EstoqueController {
         else{
             if (cachorro.getReservedBy() != null){
                 if (!cachorro.getReservedBy().reservaExpirou(cachorro)){
-                    cachorro.getReservedBy().getReservations().remove(cachorro);
+                    cachorro.getReservedBy().getReservas().remove(cachorro);
                     cachorro.setIsReserved(false);
                     return true;
                 }else return false;
             }else return true;
         }
     }
+
+    public void mostrarCachorrosDisponiveis(){
+        System.out.println("Exibindo cachorros disponíveis atualmente: ");
+        this.estoque.mostrarCachorrosDisponiveis();
+    }
+
+    public Estoque getEstoque() {
+        return this.estoque;
+    }
+
+    public void setEstoque(Estoque estoque) {
+        this.estoque = estoque;
+    }
+
 }

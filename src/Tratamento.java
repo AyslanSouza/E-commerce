@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 
 public class Tratamento{
+
     private Medicacao medicacao;
     private LocalDate inicioTratamento;
     private LocalDate fimTratamento;

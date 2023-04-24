@@ -12,23 +12,26 @@ public class PrescricaoVermifugacao{
     }
 
     public Vermifugo getVermifugo() {
-        return vermifugo;
+        return this.vermifugo;
+    }
+
+    public void setVermifugo(Vermifugo vermifugo) {
+        this.vermifugo = vermifugo;
     }
 
     public LocalDate getDataPrescricao() {
-        return dataPrescricao;
+        return this.dataPrescricao;
+    }
+
+    public void setDataPrescricao(LocalDate dataPrescricao) {
+        this.dataPrescricao = dataPrescricao;
     }
 
     public LocalDate getDataProximaVermifugacao() {
-        return dataProximaVermifugacao;
+        return this.dataProximaVermifugacao;
     }
 
-    @Override
-    public String toString() {
-        return "PrescricaoVermifugacao{" +
-                ", vermifugo=" + vermifugo +
-                ", dataPrescricao=" + dataPrescricao +
-                ", dataProximaVermifugacao=" + dataProximaVermifugacao +
-                '}';
+    public void setDataProximaVermifugacao(LocalDate dataProximaVermifugacao) {
+        this.dataProximaVermifugacao = dataProximaVermifugacao;
     }
 }

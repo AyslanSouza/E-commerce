@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.UUID;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -80,9 +79,19 @@ public class Estoque {
     public void mostrarCachorrosDisponiveis() {
         for (ArrayList<Cachorro> listaCachorros : this.cachorros.values()) {
             for (Cachorro cachorro : listaCachorros) {
-                System.out.println("Raça: " + cachorro.getRaca());
+                if (!cachorro.isIsReserved()){
+                    System.out.println("Raça: " + cachorro.getRaca() + "Nome: " + cachorro.getNome());
+                }
             }
         }
+    }
+
+    public Map<String,ArrayList<Cachorro>> getCachorros() {
+        return this.cachorros;
+    }
+
+    public void setCachorros(Map<String,ArrayList<Cachorro>> cachorros) {
+        this.cachorros = cachorros;
     }
     
 }

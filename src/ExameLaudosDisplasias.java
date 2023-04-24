@@ -15,6 +15,14 @@ public class ExameLaudosDisplasias {
         this.observacoes = observacoes;
     }
 
+    public void exibirFichaExame() {
+        System.out.println("Ficha de Exame de Laudos de Displasias:");
+        System.out.println("Data do exame: " + dataExame);
+        System.out.println("Tipo de displasia: " + tipoDisplasia);
+        System.out.println("Grau de displasia: " + grauDisplasia);
+        System.out.println("Observações: " + observacoes);
+    }
+
     public Date getDataExame() {
         return this.dataExame;
     }

@@ -10,6 +10,13 @@ public class PrescricaoAlimentacao
         this.numeroRefeicoes = numeroRefeicoes;
     }
 
+    public  void exibirPrescricaoAlimentacao() {
+        System.out.println("Prescrição de Alimentação:");
+        System.out.println("Tipo de ração: " + this.getTipoRacao());
+        System.out.printf("Quantidade diária: %.2f gramas%n", this.getQuantidadeDiaria());
+        System.out.println("Número de refeições: " + this.getNumeroRefeicoes());
+    }
+
     public String getTipoRacao() {
         return this.tipoRacao;
     }
@@ -34,12 +41,4 @@ public class PrescricaoAlimentacao
         this.numeroRefeicoes = numeroRefeicoes;
     }
 
-    @Override
-    public String toString() {
-        return "PrescricaoAlimentacao{" +
-                ", tipoRacao='" + tipoRacao + '\'' +
-                ", quantidadeDiaria=" + quantidadeDiaria +
-                ", numeroRefeicoes=" + numeroRefeicoes +
-                '}';
-    }
 }

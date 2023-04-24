@@ -12,29 +12,35 @@ public class Vermifugo {
     }
 
     public String getNome() {
-        return nome;
+        return this.nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getMarca() {
-        return marca;
+        return this.marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
     }
 
     public String getPrincipioAtivo() {
-        return principioAtivo;
+        return this.principioAtivo;
+    }
+
+    public void setPrincipioAtivo(String principioAtivo) {
+        this.principioAtivo = principioAtivo;
     }
 
     public String getDosagem() {
-        return dosagem;
+        return this.dosagem;
     }
 
-    @Override
-    public String toString() {
-        return "Vermifugo{" +
-                "nome='" + nome + '\'' +
-                ", marca='" + marca + '\'' +
-                ", principioAtivo='" + principioAtivo + '\'' +
-                ", dosagem='" + dosagem + '\'' +
-                '}';
+    public void setDosagem(String dosagem) {
+        this.dosagem = dosagem;
     }
 }
 

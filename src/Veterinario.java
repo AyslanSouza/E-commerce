@@ -2,12 +2,12 @@ import java.util.UUID;
 
 public class Veterinario{
     
-    private String nome;
     private UUID idVeterinario;
+    private String nome;
 
-    public Veterinario(String nome, UUID idVeterinario) {
+    public Veterinario(String nome) {
+        this.idVeterinario = UUID.randomUUID();
         this.nome = nome;
-        this.idVeterinario = idVeterinario;
     }
 
     public String getNome() {

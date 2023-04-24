@@ -18,13 +18,25 @@ public class NotaFiscal {
         this.totalQuantity = this.cachorrosComprados.size();
     }
 
-    public void consultaItens(){
-        for (Cachorro cachorro : this.cachorrosComprados){
-            String output = String.format("%s --> %s", cachorro.getNome(), cachorro.getRaca());
+    public void resumoNFE(){
+        System.out.println("=== Resumo da Nota Fiscal ===");
+        System.out.println("Chave de Acesso: " + this.getChaveAcesso());
+        System.out.println("Data de Emissão: " + this.getDataEmissao());
+        System.out.println("Nome do Cliente: " + this.getNomeCliente());
+        System.out.println("\nCachorros comprados:");
+
+        int precoTotal = 0;
+    
+        for (Cachorro cachorro : this.cachorrosComprados) {
+            precoTotal += cachorro.getPreco();
+            String output = String.format("Nome: %s | Raça: %s | ID: %s | Preço: R$%.2f",
+                    cachorro.getNome(), cachorro.getRaca(), cachorro.getIdCachorro(), cachorro.getPreco());
             System.out.println(output);
         }
-        String output = String.format("Total de Produtos: %d", this.getTotalQuantity());
-        System.out.println(output);
+    
+        System.out.println("\nTotal de Produtos: " + this.getTotalQuantity());
+        System.out.println("\nPreço total: " + precoTotal);
+        System.out.println("==============================");
     }
 
     public UUID getChaveAcesso() {

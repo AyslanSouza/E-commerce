@@ -12,8 +12,27 @@ public class Vacina{
         this.dataVacinacao = dataVacinacao;
     }
 
-    @Override
-    public String toString() {
-        return String.format("Vacina: %s Tipo de Vacina: %s Data de vacinação: %s", this.nomeVacina, this.tipoVacina, this.dataVacinacao);
+    public String getNomeVacina() {
+        return this.nomeVacina;
+    }
+
+    public void setNomeVacina(String nomeVacina) {
+        this.nomeVacina = nomeVacina;
+    }
+
+    public String getTipoVacina() {
+        return this.tipoVacina;
+    }
+
+    public void setTipoVacina(String tipoVacina) {
+        this.tipoVacina = tipoVacina;
+    }
+
+    public LocalDate getDataVacinacao() {
+        return this.dataVacinacao;
+    }
+
+    public void setDataVacinacao(LocalDate dataVacinacao) {
+        this.dataVacinacao = dataVacinacao;
     }
 }
