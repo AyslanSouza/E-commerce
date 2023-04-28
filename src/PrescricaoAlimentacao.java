@@ -10,7 +10,7 @@ public class PrescricaoAlimentacao
         this.numeroRefeicoes = numeroRefeicoes;
     }
 
-    public  void exibirPrescricaoAlimentacao() {
+    public void exibirPrescricaoAlimentacao() {
         System.out.println("Prescrição de Alimentação:");
         System.out.println("Tipo de ração: " + this.getTipoRacao());
         System.out.printf("Quantidade diária: %.2f gramas%n", this.getQuantidadeDiaria());

@@ -4,7 +4,9 @@ import java.util.UUID;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 
-//Registra a venda do animal com o comprador 
+/**
+ * Classe Venda para representar uma venda de cachorros no sistema.
+ */
 public class Venda{
     private boolean retirada;
     private FormaPagamento pagamento;
@@ -15,8 +17,16 @@ public class Venda{
     private NotaFiscal nfe;
     private Scanner scanner;
     
+    /**
+     * Construtor da classe Venda.
+     *
+     * @param pagamento Forma de pagamento escolhida para a venda.
+     * @param dataVenda Data da venda.
+     * @param idCliente UUID do cliente que realiza a venda.
+     * @param nomeCliente Nome do cliente que realiza a venda.
+     * @param scanner Scanner usado para entrada de dados do usuário.
+     */
     public Venda(FormaPagamento pagamento, LocalDate dataVenda, UUID idCliente, String nomeCliente, Scanner scanner) {
-        //Cadastro o cartão utilizado na compra
         this.nomeCliente = nomeCliente;
         this.pagamento = pagamento;
         this.dataVenda = dataVenda;
@@ -78,10 +88,36 @@ public class Venda{
         this.nfe = nfe;
     }
 
+    public FormaPagamento getPagamento() {
+        return this.pagamento;
+    }
+
+    public LocalDate getDataVenda() {
+        return this.dataVenda;
+    }
+
+    public void setDataVenda(LocalDate dataVenda) {
+        this.dataVenda = dataVenda;
+    }
+
+    public String getUsuario() {
+        return this.nomeCliente;
+    }
+
+     /**
+     * Adiciona um cachorro ao carrinho de compras.
+     *
+     * @param cachorro Cachorro a ser adicionado ao carrinho.
+     */
     public void addCachorro(Cachorro cachorro){
         this.carrinhoAtual.add(cachorro);
     }
 
+    /**
+     * Remove um cachorro do carrinho de compras pelo seu UUID.
+     *
+     * @param cachorroID UUID do cachorro a ser removido.
+     */
     public void removeCachorro(UUID cachorroID){
         for (Cachorro cachorro : this.carrinhoAtual){
             if (cachorro.getIdCachorro() == cachorroID){
@@ -91,6 +127,9 @@ public class Venda{
         }
     }
 
+    /**
+     * Permite ao usuário escolher a forma de recebimento dos cachorros comprados.
+     */
     public void escolherFormaRecebimento(){
         //Define a forma de entrega da compra
         
@@ -118,22 +157,6 @@ public class Venda{
             default:
                 System.out.print("Você escolheu entregar na sua residencia\n");
         }
-    }
-
-    public FormaPagamento getPagamento() {
-        return this.pagamento;
-    }
-
-    public LocalDate getDataVenda() {
-        return this.dataVenda;
-    }
-
-    public void setDataVenda(LocalDate dataVenda) {
-        this.dataVenda = dataVenda;
-    }
-
-    public String getUsuario() {
-        return this.nomeCliente;
     }
     
 }

@@ -4,6 +4,9 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+/**
+ * Classe Usuario para representar um usuário no sistema de compra e reserva de cachorros.
+ */
 public class Usuario {
 
     private UUID idUsuario;
@@ -17,6 +20,16 @@ public class Usuario {
 
     private Scanner scanner;
 
+    /**
+     * Construtor da classe Usuario.
+     *
+     * @param nome Nome do usuário.
+     * @param nascimento Data de nascimento do usuário.
+     * @param endereco Endereço do usuário.
+     * @param reservaDuracaoHoras Duração da reserva em horas.
+     * @param reservaLimite Limite de reservas permitidas para o usuário.
+     * @param scanner Scanner usado para entrada de dados do usuário.
+     */
     public Usuario(String nome, LocalDate nascimento, String endereco, int reservaDuracaoHoras, int reservaLimite, Scanner scanner){
         this.idUsuario = UUID.randomUUID();
         this.nome = nome;
@@ -91,6 +104,13 @@ public class Usuario {
         this.reservaDuracao = reservaDuracao;
     }
 
+    /**
+     * Método para realizar a compra de cachorros.
+     *
+     * @param listaUUID Lista de UUIDs dos cachorros a serem comprados.
+     * @param estoqueController Controlador de estoque responsável pela gestão de cachorros disponíveis.
+     * @param formaPagamento Forma de pagamento escolhida para a compra.
+     */
     public void comprarCachorro(ArrayList<UUID> listaUUID, EstoqueController estoqueController, FormaPagamento formaPagamento){
         System.out.println("Executando compra para o Usuário: " + this.getNome() + "\n");
         ArrayList<Cachorro> cachorrosComprar = estoqueController.getCachorrosByUUIDs(listaUUID);
@@ -121,7 +141,15 @@ public class Usuario {
         }
     }
 
+    /**
+     * Método para reservar cachorros.
+     *
+     * @param listaUUID Lista de UUIDs dos cachorros a serem reservados.
+     * @param estoqueController Controlador de estoque responsável pela gestão de cachorros disponíveis.
+     * @param formaPagamento Forma de pagamento escolhida para a reserva.
+     */
     public void reservarCachorro(ArrayList<UUID> listaUUID, EstoqueController estoqueController, FormaPagamento formaPagamento){
+        System.out.println("Executando reserva para o Usuário: " + this.getNome() + "\n");
         ArrayList<Cachorro> cachorrosReservar = estoqueController.getCachorrosByUUIDs(listaUUID);
         Boolean reservaValida = true;
         for (Cachorro cachorro : cachorrosReservar){
@@ -142,7 +170,13 @@ public class Usuario {
             System.out.println("Reserva realizada com sucesso.");
         }
     }
-    
+
+    /**
+     * Método para verificar se a reserva de um cachorro expirou.
+     *
+     * @param cachorro Cachorro cuja reserva será verificada.
+     * @return Verdadeiro se a reserva expirou, falso caso contrário.
+     */
     public boolean reservaExpirou(Cachorro cachorro) {
         
         if (this.reservas != null){

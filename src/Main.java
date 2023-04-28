@@ -4,6 +4,29 @@ import java.util.ArrayList;
 import java.util.UUID;
 import java.util.Scanner;
 
+//Autores: AyslanSouza
+//         Miguel
+//         Nicholas Adorni
+//         Thiago Mantovani Martins
+
+/**
+ * Projeto de e-commerce para venda de cães Golden Retriever
+ * Programação Orientada a Objetos
+ *
+ * Este projeto simula um sistema de e-commerce para a venda de cães Golden Retriever.
+ * A aplicação permite o gerenciamento de estoque de cachorros, informações sobre vacinação,
+ * tratamentos e exames dos cães, além de permitir que os usuários comprem ou reservem cachorros.
+ * 
+ * O projeto utiliza conceitos de Programação Orientada a Objetos, como herança, encapsulamento e tratamento de exceções.
+ * As classes representam diferentes aspectos do domínio, como Cachorro, Usuario,
+ * Veterinario, Tratamento, Exame, entre outras.
+ * 
+ * Por ser um trabalho exclusivo de POO e não incluir um banco de dados, algumas funcionalidades são
+ * simuladas através de estruturas de dados em memória, como ArrayLists.
+ * 
+ * O arquivo Main.java contém o fluxo principal da aplicação, exemplificando a criação e uso de
+ * objetos das classes mencionadas, bem como a interação com o usuário através da classe Scanner.
+ */
 public class Main {
     public static void main(String[] args) {
 
